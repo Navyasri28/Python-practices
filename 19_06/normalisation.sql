@@ -134,6 +134,91 @@ If we want to ensure no transitive dependencies, consider a scenario where stude
 
 -- The current schema already ensures 3NF because all non-key attributes directly depend on the primary key and no other non-key attribute.
 
+-- Let's apply 1NF, 2NF, and 3NF normalization to the government schools database.
+-- 1NF (First Normal Form)
+-- Before 1NF
+    /*
+student_id | student_name | date_of_birth | email           | phone_numbers
+---------------------------------------------------------------------------
+1          | Navya        | 2005-05-15    | navya@gmail.com | 123-456-7890, 987-654-3210
+2          | tejju        | 2006-08-22    | tejju@gmail.com | 555-123-4567
+*/
+
+-- After 1NF
+/*
+student_id | student_name | date_of_birth | email           | phone_number
+---------------------------------------------------------------------------
+1          | Navya        | 2005-05-15    | navya@gmail.com | 123-456-7890
+1          | Navya        | 2005-05-15    | navya@gmail.com | 987-654-3210
+2          | tejju        | 2006-08-22    | tejju@gmail.com | 555-123-4567
+*/
+
+-- 2NF(Second Normal Form)
+-- Before 2NF
+/*
+student_id | student_name | date_of_birth | email           | course_name                      | course_department | credits
+--------------------------------------------------------------------------------------------------------------------------------
+1          | Navya        | 2005-05-15    | navya@gmail.com | Introduction to Computer Science | Computer Science  | 3
+2          | tejju        | 2006-08-22    | tejju@gmail.com | Database Management              | Computer Science  | 4
+*/
+
+-- After 2NF
+/*
+Students Table
+student_id | student_name | date_of_birth | email
+--------------------------------------------------
+1          | Navya        | 2005-05-15    | navya@gmail.com
+2          | tejju        | 2006-08-22    | tejju@gmail.com
+
+Courses Table
+course_id | course_name                      | course_department | credits
+------------------------------------------------------------------------
+1         | Introduction to Computer Science | Computer Science  | 3
+2         | Database Management              | Computer Science  | 4
+
+Enrollments Table
+enrollment_id | student_id | course_id
+---------------------------------------
+1             | 1          | 1
+2             | 2          | 2
+*/
+
+-- 3NF(Third Normal Form)
+-- Before 3NF
+/*
+student_id | student_name | date_of_birth | email           | course_name                      | department_name  | department_location | credits
+-------------------------------------------------------------------------------------------------------------------------------------------
+1          | Navya        | 2005-05-15    | navya@gmail.com | Introduction to Computer Science | Computer Science | Building A          | 3
+2          | tejju        | 2006-08-22    | tejju@gmail.com | Database Management              | Computer Science | Building B          | 4
+*/
+
+-- After 3NF
+/*
+Students Table
+student_id | student_name | date_of_birth | email
+--------------------------------------------------
+1          | Navya        | 2005-05-15    | navya@gmail.com
+2          | tejju        | 2006-08-22    | tejju@gmail.com
+
+Departments Table
+department_id | department_name  | department_location
+-------------------------------------------------------
+1             | Computer Science | Building A
+2             | Mathematics      | Building B
+
+Courses Table
+course_id | course_name                      | department_id | credits
+---------------------------------------------------------------------
+1         | Introduction to Computer Science | 1             | 3
+2         | Database Management              | 1             | 4
+
+Enrollments Table
+enrollment_id | student_id | course_id
+---------------------------------------
+1             | 1          | 1
+2             | 2          | 2
+*/
+
 Example of Ensuring BCNF (Removing Advanced Anomalies)
 Lets consider a complex scenario where there might be more advanced dependencies.
 -- If there are non-trivial functional dependencies, ensure that each determinant is a candidate key.
