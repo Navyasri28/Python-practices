@@ -20,11 +20,19 @@ Univariate Analysis:
 
 Numerical Variables: Analyze the distribution of tenure, MonthlyCharges, and TotalCharges using summary statistics and histograms.
 Categorical Variables: Analyze the distribution of categorical variables such as gender, Partner, and Dependents using bar charts and pie charts.
+
 Bivariate Analysis:
 
 Scatterplots: Examine relationships between pairs of numerical variables, such as tenure vs. MonthlyCharges and tenure vs. TotalCharges.
 Heatmaps: Explore the relationship between categorical variables like gender and Churn.
+
 Multivariate Analysis:
 
 Violin Plots: Analyze the distribution of MonthlyCharges and tenure across different Contract types and their association with Churn.
 Box Plots: Compare MonthlyCharges across different contract types and Churn statuses.
+
+Churn Insights:
+
+Customers with month-to-month contracts and those paying by electronic check exhibit a higher likelihood of churn.
+Longer contract terms and automatic payment methods are associated with lower churn rates and higher total charges.
+Customers with longer tenures, especially those on one-year and two-year contracts, are less likely to churn.
